@@ -1,8 +1,3 @@
-/*
- *
- * Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
- */
-
 package com.rina.learn.jm.entity;
 
 import java.util.List;
@@ -29,7 +24,7 @@ import lombok.*;
 @Entity
 @Multitenant(MultitenantType.SINGLE_TABLE)
 @TenantDiscriminatorColumn(name = "TENANT_ID", discriminatorType = DiscriminatorType.STRING,
-        contextProperty = MultiTenantJpaTransactionManager.TENANT_DESCRIMINATOR_NAME)
+        contextProperty = MultiTenantJpaTransactionManager.TENANT_DESCRIMINATOR_NAME, primaryKey=true)
 @Getter
 @Setter
 @NoArgsConstructor

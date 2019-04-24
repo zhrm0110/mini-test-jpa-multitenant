@@ -1,0 +1,135 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="zhrm0110" id="app-000-1">
+        <createTable tableName="app">
+        	<column name="tenant_id" type="VARCHAR(36)"/>
+            <column name="id" type="VARCHAR(200)"/>            
+            <column name="app_a" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_b" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_c" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_d" type="VARCHAR(5000)"/>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="changed_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="tenant_id, id" constraintName="app_pkey" tableName="app"/>
+        <addUniqueConstraint
+            columnNames="tenant_id, app_a"
+            constraintName="app_unique_field_a"            
+            schemaName="public"
+            tableName="app"/>
+        <createIndex tableName="app" indexName="app_tenant">
+			<column name="tenant_id"/>
+		</createIndex>
+		<createIndex tableName="app" indexName="app_field_a">
+			<column name="app_a"/>
+		</createIndex>
+		<createIndex tableName="app" indexName="app_field_b">
+			<column name="app_b"/>
+		</createIndex>
+		<createIndex tableName="app" indexName="app_created_at">
+			<column name="created_at"/>
+		</createIndex>
+		<createIndex tableName="app" indexName="app_changed_at">
+			<column name="changed_at"/>
+		</createIndex>
+		
+		<createTable tableName="bpp">
+        	<column name="tenant_id" type="VARCHAR(36)"/>
+            <column name="id" type="VARCHAR(200)"/>            
+            <column name="app_id" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bpp_a" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bpp_b" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="id" constraintName="bpp_pkey" tableName="bpp"/>
+        <createIndex tableName="bpp" indexName="bpp_tenant">
+			<column name="tenant_id"/>
+		</createIndex>
+		<createIndex tableName="bpp" indexName="bpp_field_a">
+			<column name="bpp_a"/>
+		</createIndex>
+		<createIndex tableName="bpp" indexName="bpp_field_b">
+			<column name="bpp_b"/>
+		</createIndex>
+		
+		<createTable tableName="cpp">
+        	<column name="tenant_id" type="VARCHAR(36)"/>
+            <column name="id" type="VARCHAR(200)"/>            
+            <column name="app_id" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpp_a" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpp_b" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpp_c" type="VARCHAR(200)"/>
+            <column name="cpp_d" type="BOOLEAN"/>
+            <column name="cpp_e" type="VARCHAR(255)"/>
+        </createTable>
+        <addPrimaryKey columnNames="id" constraintName="cpp_pkey" tableName="cpp"/>
+        <createIndex tableName="cpp" indexName="cpp_tenant">
+			<column name="tenant_id"/>
+		</createIndex>
+		<createIndex tableName="cpp" indexName="cpp_field_a">
+			<column name="cpp_a"/>
+		</createIndex>
+		
+		<createTable tableName="dpp">
+        	<column name="tenant_id" type="VARCHAR(36)"/>           
+            <column name="app_id" type="VARCHAR(200)"/>
+            <column name="dpp_a" type="VARCHAR(255)"/>
+            <column name="dpp_b" type="VARCHAR(10)"/>
+            <column name="dpp_c" type="INTEGER"/>
+            <column name="dpp_d" type="BOOLEAN"/>
+            <column name="dpp_e" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="tenant_id, app_id" constraintName="dpp_pkey" tableName="dpp"/>
+        
+        <createTable tableName="epp">
+        	<column name="tenant_id" type="VARCHAR(36)"/>
+            <column name="id" type="VARCHAR(200)"/>            
+            <column name="app_id" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="epp_a" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="epp_b" type="VARCHAR(50)"/>
+        </createTable>
+        <addPrimaryKey columnNames="id" constraintName="epp_pkey" tableName="epp"/>
+        
+        <createTable tableName="fpp">
+        	<column name="tenant_id" type="VARCHAR(36)"/>
+            <column name="id" type="VARCHAR(200)"/>            
+            <column name="app_id" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fpp_a" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="id" constraintName="fpp_pkey" tableName="fpp"/>
+    </changeSet>
+</databaseChangeLog>
